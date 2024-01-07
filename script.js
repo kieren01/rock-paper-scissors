@@ -1,39 +1,48 @@
-console.log(game());
+let playerScore = 0;
+let computerScore = 0; 
+
+const buttons = document.querySelectorAll('button');
+
+buttons.forEach((button) => {
+
+button.addEventListener('click', () => {
+    playerSelection = button.value; 
+    computerSelection = getComputerChoice();
+    let results = playRound(playerSelection, computerSelection);
+    message = results[0];
+    playerScore = results[1];
+    computerScore = results[2];
+    document.getElementById("results").innerHTML = message;
+    document.getElementById("playerScore").innerHTML = "Player: " + playerScore;
+    document.getElementById("computerScore").innerHTML = "Computer: " + computerScore;
+    if (checkWinner(playerScore, computerScore)) {
+      button.removeEventListener('click', onclick);
+    };
+  });
+});
+
 
 function playRound(playerSelection, computerSelection) {
-    // capitalize first letter, make rest lowercase
-    playerSelection = playerSelection.toLowerCase();
-    playerSelection = playerSelection[0].toUpperCase() + playerSelection.slice(1);
-    computerSelection = computerSelection.toLowerCase();
-    computerSelection = computerSelection[0].toUpperCase() + computerSelection.slice(1);
-    let message, player_points = 0, computer_points = 0; 
-
-    // case of tie 
     if (playerSelection == computerSelection) {
-      message = "It's a tie!"
-      player_points = 1; 
-      return [message, player_points, computer_points]; 
+      message = `It's a tie! ${playerSelection} ties with ${computerSelection}`;
+      return [message, playerScore, computerScore]; 
     }
-
-    // case of different choices 
     else {
       if ((playerSelection == "Rock" && computerSelection == "Paper") ||
       (playerSelection == "Paper" && computerSelection == "Scissors") ||
       (playerSelection == "Scissors" && computerSelection == "Rock")) {
         message = `You Lose! ${computerSelection} beats ${playerSelection}`;  
-        computer_points = 1; 
-        return [message, player_points, computer_points]; 
+        return [message, playerScore, ++computerScore]; 
       }
 
       if ((playerSelection == "Scissors" && computerSelection == "Paper") ||
       (playerSelection == "Rock" && computerSelection == "Scissors") ||
       (playerSelection == "Paper" && computerSelection == "Rock")) {
         message = `You Win! ${playerSelection} beats ${computerSelection}`;  
-        player_points = 1; 
-        return [message, player_points, computer_points]; 
+        return [message, ++playerScore, computerScore]; 
       }
     }
-  }
+}
 
 
 function getComputerChoice() {
@@ -43,25 +52,16 @@ function getComputerChoice() {
     return choice;
 }
 
+function checkWinner(playerScore, computerScore) {
+  if (playerScore == 5) {
+    alert("You won!")
+    return true; 
+  } else if (computerScore == 5) {
+    alert("You lost...")
+    return true; 
+  } 
+ }
 
-// 5 rounds are played 
-function game() {
-  let player_points = 0, computer_points = 0; 
-  for (let i = 0; i < 5; i++) {
-    const playerSelection = prompt("Choose between rock, paper and scissors.", "");
-    const computerSelection = getComputerChoice();
-    player_points += Number(playRound(playerSelection, computerSelection)[1]);
-    computer_points += Number(playRound(playerSelection, computerSelection)[2]);
-    alert(playRound(playerSelection, computerSelection)[0]);
-  }
 
-  // compare points between player and computer 
-  if (player_points == computer_points) {
-    alert("It's a tie!");
-  } else if (player_points > computer_points) {
-    alert("You win!");
-  } else {
-    alert("You lose...");
-  }
-}
+
 
