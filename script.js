@@ -1,7 +1,7 @@
 let playerScore = 0;
 let computerScore = 0; 
 
-const buttons = document.querySelectorAll('button');
+const buttons = document.querySelectorAll('button.option');
 
 buttons.forEach((button) => {
 
@@ -20,14 +20,23 @@ button.addEventListener('click', () => {
       document.getElementById("rock").setAttribute("disabled", true);
       document.getElementById("paper").setAttribute("disabled", true);
       document.getElementById("scissors").setAttribute("disabled", true);
+      playAgain();
     } else if ((checkWinner(playerScore, computerScore)) == false) {
       document.getElementById("finalResults").innerHTML = "You lost This Game..."
       document.getElementById("rock").setAttribute("disabled", true);
       document.getElementById("paper").setAttribute("disabled", true);
       document.getElementById("scissors").setAttribute("disabled", true);
+      playAgain();
     }
   });
 });
+
+const playAgainButton = document.querySelector('#playAgain');
+playAgainButton.addEventListener("click", function() {
+  // Refresh the page
+  window.location.reload();
+});
+
 
 
 function playRound(playerSelection, computerSelection) {
@@ -66,6 +75,11 @@ function checkWinner(playerScore, computerScore) {
   } else if (computerScore == 5) {
     return false; 
   } 
+ }
+
+ function playAgain() {
+  var button = document.getElementById("playAgain");
+  button.style.display = "block"; 
  }
 
  
