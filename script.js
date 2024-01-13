@@ -12,12 +12,20 @@ button.addEventListener('click', () => {
     message = results[0];
     playerScore = results[1];
     computerScore = results[2];
-    document.getElementById("results").innerHTML = message;
+    document.getElementById("roundResults").innerHTML = message;
     document.getElementById("playerScore").innerHTML = "Player: " + playerScore;
     document.getElementById("computerScore").innerHTML = "Computer: " + computerScore;
     if (checkWinner(playerScore, computerScore)) {
-      button.removeEventListener('click', onclick);
-    };
+      document.getElementById("finalResults").innerHTML = "You Won This Game!"
+      document.getElementById("rock").setAttribute("disabled", true);
+      document.getElementById("paper").setAttribute("disabled", true);
+      document.getElementById("scissors").setAttribute("disabled", true);
+    } else if ((checkWinner(playerScore, computerScore)) == false) {
+      document.getElementById("finalResults").innerHTML = "You lost This Game..."
+      document.getElementById("rock").setAttribute("disabled", true);
+      document.getElementById("paper").setAttribute("disabled", true);
+      document.getElementById("scissors").setAttribute("disabled", true);
+    }
   });
 });
 
@@ -54,13 +62,13 @@ function getComputerChoice() {
 
 function checkWinner(playerScore, computerScore) {
   if (playerScore == 5) {
-    alert("You won!")
     return true; 
   } else if (computerScore == 5) {
-    alert("You lost...")
-    return true; 
+    return false; 
   } 
  }
+
+ 
 
 
 
