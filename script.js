@@ -9,10 +9,12 @@ button.addEventListener('click', () => {
     playerSelection = button.value; 
     computerSelection = getComputerChoice();
     let results = playRound(playerSelection, computerSelection);
-    message = results[0];
-    playerScore = results[1];
-    computerScore = results[2];
-    document.getElementById("roundResults").innerHTML = message;
+    outcome = results[0];
+    reason = results[1];
+    playerScore = results[2];
+    computerScore = results[3];
+    document.getElementById("roundOutcome").innerHTML = outcome;
+    document.getElementById("roundReason").innerHTML = reason; 
     document.getElementById("playerScore").innerHTML = "Player: " + playerScore;
     document.getElementById("computerScore").innerHTML = "Computer: " + computerScore;
     if (checkWinner(playerScore, computerScore)) {
@@ -41,22 +43,25 @@ playAgainButton.addEventListener("click", function() {
 
 function playRound(playerSelection, computerSelection) {
     if (playerSelection == computerSelection) {
-      message = `It's a tie! ${playerSelection} ties with ${computerSelection}`;
-      return [message, playerScore, computerScore]; 
+      outcome = `It's a tie!`;
+      reason = `${playerSelection} ties with ${computerSelection}`;
+      return [outcome, reason, playerScore, computerScore]; 
     }
     else {
       if ((playerSelection == "Rock" && computerSelection == "Paper") ||
       (playerSelection == "Paper" && computerSelection == "Scissors") ||
       (playerSelection == "Scissors" && computerSelection == "Rock")) {
-        message = `You Lose! ${computerSelection} beats ${playerSelection}`;  
-        return [message, playerScore, ++computerScore]; 
+        outcome = `You Lose!`;
+        reason = `${computerSelection} beats ${playerSelection}`;
+        return [outcome, reason, playerScore, ++computerScore]; 
       }
 
       if ((playerSelection == "Scissors" && computerSelection == "Paper") ||
       (playerSelection == "Rock" && computerSelection == "Scissors") ||
       (playerSelection == "Paper" && computerSelection == "Rock")) {
-        message = `You Win! ${playerSelection} beats ${computerSelection}`;  
-        return [message, ++playerScore, computerScore]; 
+        outcome = `You Win!`;
+        reason = `${playerSelection} beats ${computerSelection}`;
+        return [outcome, reason, ++playerScore, computerScore]; 
       }
     }
 }

@@ -1,0 +1,49 @@
+body {
+    display:flex; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: blanchedalmond;
+}
+
+#roundReason {
+    margin-top: 0px; 
+}
+
+.display {
+    display:flex; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.scoreboard {
+    display: flex; 
+    gap: 15px;
+    font-size: 24px;
+    font-weight: 500px;
+}
+
+.results {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.options button {
+    font-size: 85px;
+    border-radius:10px; 
+    min-height:120px; 
+    min-width: 120px;
+}
+
+#paper {
+    margin:20px; 
+}
+
+#playAgain {
+    margin-top: 10px;
+    font-size: 20px;
+    border-radius:10px; 
+}

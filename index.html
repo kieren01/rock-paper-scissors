@@ -3,20 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Rock Paper Scissors</title>
+    <link rel="stylesheet" href="styles.css">
     <script src="script.js" defer></script> 
 </head>
 <body>
-    <button id="rock" value="Rock" class="option">Rock</button>
-    <button id="paper" value="Paper" class="option">Paper</button>
-    <button id="scissors" value="Scissors" class="option">Scissors</button>
+    <div class="introduction">
+        <h1>Rock Paper Scissors</h1>
+    </div>
 
-    <div id="roundResults"></div>
-    <div id="playerScore"></div>
-    <div id="computerScore"></div>
+    <div class="display">
+        <h2 id="roundOutcome">Choose your weapon</h2>
+        <h3 id="roundReason">First to score 5 points wins the game</h3>
+    </div>
 
-    <div id="finalResults"></div>
+    <div class="scoreboard">
+        <div id="playerScore">Player: </div>
+        <div id="computerScore">Computer: </div>
+    </div>
+      
+    <div class="options">
+        <button id="rock" value="Rock" class="option">✊</button>
+        <button id="paper" value="Paper" class="option">✋ </button>
+        <button id="scissors" value="Scissors" class="option">✌️</button>
+    </div>
 
-    <button id="playAgain" class="repeat" style="display: none;">Play Again</button>
+    <div class="results">
+        <div id="finalResults"></div>
+        <button id="playAgain" class="repeat" style="display: none;">Play Again</button>
+    </div>
+
 </body>
 </html>
